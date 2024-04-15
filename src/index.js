@@ -1,45 +1,5 @@
-// import {getWeatherByCoordinates} from "src/openweathermap.js"
-
-const YA_API_KEY = '';
-const OWM_API_KEY = '';
-
-async function getWeatherByCoordinates(lat, lon) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?&units=metric&lat=${lat}&lon=${lon}&appid=${OWM_API_KEY}`;
-  let weatherPromise;
-  try {
-    weatherPromise = await fetch(url);
-  } catch (error) {
-    console.error('Error fetching OWM data', error);
-  }
-  return weatherPromise.json();
-}
-
-async function getCityByCoordinates(lat, lon) {
-  const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OWM_API_KEY}`;
-  let geoPromise;
-  try {
-    geoPromise = await fetch(url);
-  } catch (error) {
-    console.error('Error fetching OWM data', error);
-  }
-  return geoPromise.json();
-}
-
-async function getCoordinatesByCity(city) {
-  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${OWM_API_KEY}`;
-  let coordinatesPromise;
-  try {
-    coordinatesPromise = await fetch(url);
-  } catch (error) {
-    console.error('Error fetching OWM data', error);
-  }
-  return coordinatesPromise.json();
-}
-
-window.addEventListener('load', findLocation);
-
-const button = document.getElementById('show');
-
+import {getWeatherByCoordinates, getCityByCoordinates, getCoordinatesByCity} from "./openweathermap.js"
+import {showMap} from "./yamap.js"
 function findLocation() {
   if (!navigator.geolocation) {
     console.error("Geolocation isn't work");
@@ -86,11 +46,6 @@ function addToHistory(city, lat, lon) {
   if (list.length > 5) history.removeChild(list[0]);
 }
 
-function showMap(lat, lon) {
-  const map = document.getElementById('map');
-  console.log('show map');
-  // map.src = `https://static-maps.yandex.ru/v1?lang=ru_RU&ll=${lon},${lat}&spn=0.01,0.01&size=450,450&pt=${lon},${lat},pm2rdm,37.6341127,55.8238195&apikey=${YA_API_KEY}`;
-}
 function showCity(city) {
   const cityHeader = document.getElementById('city');
   cityHeader.innerText = city;
@@ -150,7 +105,6 @@ function getCityWeather() {
 }
 
 function getWeatherFromHistory(event) {
-  console.log(event.target.getAttribute('data-lat'));
   let lat = event.target.getAttribute('data-lat');
   let lon = event.target.getAttribute('data-lon');
   getWeatherByCoordinates(lat, lon).then(data => {
@@ -165,6 +119,8 @@ function getWeatherFromHistory(event) {
   });
 }
 
+window.addEventListener('load', findLocation);
+const button = document.getElementById('show');
 const input = document.querySelector('#input');
 input.addEventListener('change', makeShowButtonVisible);
 button.addEventListener('click', getCityWeather);
