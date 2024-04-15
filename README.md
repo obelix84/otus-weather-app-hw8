@@ -1,1 +1,1 @@
-# otus-weather-app-hw8
+# otus-weather-app
