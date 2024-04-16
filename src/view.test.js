@@ -1,7 +1,12 @@
-import {showCity, makeShowButtonVisible, getWeatherFromHistory, addToHistory, showWeather} from "./view.js"
+import {
+  showCity,
+  makeShowButtonVisible,
+  addToHistory,
+  showWeather,
+} from './view';
 
 beforeAll(() => {
-    document.body.innerHTML = `<main>
+  document.body.innerHTML = `<main>
             <div className="row g-5">
                 <div className="col-md-8">
                     <form className="row g-3" onSubmit="return false;">
@@ -47,55 +52,54 @@ beforeAll(() => {
 });
 
 it('should show city in header', () => {
-    // const div = document.createElement('div');
-    // div.setAttribute('id', 'weather');
-    // const h2 = document.createElement('h2');
-    // h2.setAttribute('id', 'city');
-    // h2.innerText = 'Weather info';
-    // div.appendChild(h2);
-    // document.body.append(div);
-    showCity('Moscow');
-    expect(document.querySelector('#city').innerText).toEqual('Moscow');
+  // const div = document.createElement('div');
+  // div.setAttribute('id', 'weather');
+  // const h2 = document.createElement('h2');
+  // h2.setAttribute('id', 'city');
+  // h2.innerText = 'Weather info';
+  // div.appendChild(h2);
+  // document.body.append(div);
+  showCity('Moscow');
+  expect(document.querySelector('#city').innerText).toEqual('Moscow');
 });
 
 it('should make show button visible', () => {
-    const event = new Event('change');
-    const input = document.getElementById('input');
-    input.addEventListener('change', makeShowButtonVisible);
-    input.value = 'SomeCity';
-    input.dispatchEvent(event);
-    expect(document.querySelector('#show').hasAttribute('disabled')).toBeFalsy();
+  const event = new Event('change');
+  const input = document.getElementById('input');
+  input.addEventListener('change', makeShowButtonVisible);
+  input.value = 'SomeCity';
+  input.dispatchEvent(event);
+  expect(document.querySelector('#show').hasAttribute('disabled')).toBeFalsy();
 });
 
 it('should make show button invisible', () => {
-    const event = new Event('change');
-    const input = document.getElementById('input');
-    input.addEventListener('change', makeShowButtonVisible);
-    input.value = '';
-    input.dispatchEvent(event);
-    expect(document.querySelector('#show').hasAttribute('disabled')).toBeTruthy();
+  const event = new Event('change');
+  const input = document.getElementById('input');
+  input.addEventListener('change', makeShowButtonVisible);
+  input.value = '';
+  input.dispatchEvent(event);
+  expect(document.querySelector('#show').hasAttribute('disabled')).toBeTruthy();
 });
 
 it('should add city and lat lot to history', () => {
-    addToHistory('Moscow', 100, 200);
-    const history = document.getElementById('history');
-    const list = history.querySelector('li.list-group-item:not(li.active)');
-    console.log(list);
-    expect(list.innerHTML).toBe('<a href="#" data-lat="100" data-lon="200">Moscow</a>');
+  addToHistory('Moscow', 100, 200);
+  const history = document.getElementById('history');
+  const list = history.querySelector('li.list-group-item:not(li.active)');
+  expect(list.innerHTML).toBe(
+    '<a href="#" data-lat="100" data-lon="200">Moscow</a>',
+  );
 });
 
 it('should add temp to the fields', () => {
-    showWeather(20, 10, 30, '10d')
-    const weather = document.querySelector('#weather > p');
-    console.log(weather);
-    expect(weather.innerHTML)
-        .toBe('Current: <b>20</b><br>Max: <b>30</b><br>Min: <b>10</b><br>');
+  showWeather(20, 10, 30, '10d');
+  const weather = document.querySelector('#weather > p');
+  expect(weather.innerHTML).toBe(
+    'Current: <b>20</b><br>Max: <b>30</b><br>Min: <b>10</b><br>',
+  );
 });
 
 it('should add weather picture', () => {
-    showWeather(20, 10, 30, '10d')
-    const img = document.querySelector('#weather > img');
-    console.log(img);
-    expect(img.src).toBe('https://openweathermap.org/img/wn/10d@4x.png');
+  showWeather(20, 10, 30, '10d');
+  const img = document.querySelector('#weather > img');
+  expect(img.src).toBe('https://openweathermap.org/img/wn/10d@4x.png');
 });
-

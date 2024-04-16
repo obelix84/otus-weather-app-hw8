@@ -2,7 +2,7 @@
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
-
+/* eslint-disable max-len */
 /** @type {import('jest').Config} */
 const config = {
   // All imported modules in your tests should be mocked automatically
@@ -197,3 +197,4 @@ const config = {
 };
 
 module.exports = config;
+/* eslint-enable max-len */

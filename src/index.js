@@ -1,14 +1,17 @@
-import {getWeatherByCoordinates, getCityByCoordinates, getCoordinatesByCity} from "./openweathermap.js"
-import {showMap} from "./yamap.js"
-import {showWeather, showCity, makeShowButtonVisible, getCityWeather, addToHistory} from "./view"
+import {
+  getWeatherByCoordinates,
+  getCityByCoordinates,
+} from './openweathermap';
+import showMap from './yamap';
+import {
+  showWeather,
+  showCity,
+  makeShowButtonVisible,
+  getCityWeather,
+  addToHistory,
+} from './view';
 
 function findLocation() {
-  if (!navigator.geolocation) {
-    console.error("Geolocation isn't work");
-  } else {
-    navigator.geolocation.getCurrentPosition(success, error);
-  }
-
   function success(position) {
     // если всё хорошо, собираем ссылку
     const { longitude, latitude } = position.coords;
@@ -28,11 +31,17 @@ function findLocation() {
   }
 
   function error() {
+    /* eslint-disable-next-line */
     console.error("Can't find coordinates");
   }
+
+  if (!navigator.geolocation) {
+    /* eslint-disable-next-line */
+    console.error("Geolocation isn't work");
+  } else {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
 }
-
-
 
 window.addEventListener('load', findLocation);
 const button = document.getElementById('show');
