@@ -37,7 +37,8 @@ beforeAll(() => {
                                 alt="map"
                             />
                         </div>
-                        <div className="col" id="weather"><h2 id="city">Weather info</h2><p id="temp">Current: <b></b><br/>Max: <b></b><br/>Min: <b></b><br/></p>
+                        <div className="col" id="weather">
+                        <h2 id="city">Weather info</h2><p id="temp">Current: <b></b><br/>Max: <b></b><br/>Min: <b></b><br/></p>
                         </div>
                     </div>
                 </div>

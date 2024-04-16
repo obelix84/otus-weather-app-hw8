@@ -3,6 +3,7 @@ import { OWM_API_KEY } from './config';
 // const { OWM_API_KEY } = process.env;
 
 export async function getWeatherByCoordinates(lat, lon) {
+  // eslint-disable-next-line
   const url = `https://api.openweathermap.org/data/2.5/weather?&units=metric&lat=${lat}&lon=${lon}&appid=${OWM_API_KEY}`;
   let weatherPromise;
   try {
@@ -15,6 +16,7 @@ export async function getWeatherByCoordinates(lat, lon) {
 }
 
 export async function getCityByCoordinates(lat, lon) {
+  // eslint-disable-next-line
   const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${OWM_API_KEY}`;
   let geoPromise;
   try {
@@ -27,6 +29,7 @@ export async function getCityByCoordinates(lat, lon) {
 }
 
 export async function getCoordinatesByCity(city) {
+  // eslint-disable-next-line
   const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${OWM_API_KEY}`;
   let coordinatesPromise;
   try {
