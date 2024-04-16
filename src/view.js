@@ -78,7 +78,7 @@ export function getCityWeather() {
     getCoordinatesByCity(city).then((data) => {
       if (data.length === 0) {
         /* eslint-disable-next-line */
-        alert("Incorrect city name!");
+        alert('Incorrect city name!');
       } else {
         addToHistory(data[0].name, data[0].lat, data[0].lon);
         showMap(data[0].lat, data[0].lon);

@@ -10,7 +10,7 @@ export async function getWeatherByCoordinates(lat, lon) {
     weatherPromise = await fetch(url);
   } catch (error) {
     /* eslint-disable-next-line */
-    console.error("Error fetching OWM data", error);
+    console.error('Error fetching OWM data', error);
   }
   return weatherPromise.json();
 }
@@ -23,7 +23,7 @@ export async function getCityByCoordinates(lat, lon) {
     geoPromise = await fetch(url);
   } catch (error) {
     /* eslint-disable-next-line */
-    console.error("Error fetching OWM data", error);
+    console.error('Error fetching OWM data', error);
   }
   return geoPromise.json();
 }
@@ -36,7 +36,7 @@ export async function getCoordinatesByCity(city) {
     coordinatesPromise = await fetch(url);
   } catch (error) {
     /* eslint-disable-next-line */
-    console.error("Error fetching OWM data", error);
+    console.error('Error fetching OWM data', error);
   }
   return coordinatesPromise.json();
 }
