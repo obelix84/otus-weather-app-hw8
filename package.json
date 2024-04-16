@@ -9,7 +9,7 @@
     "lint:fix": "prettier --write . && eslint . --fix",
     "prepare": "husky",
     "build": "webpack",
-    "prod": "webpack --mode production"
+    "dev": "webpack --watch"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,7 @@
     "@babel/cli": "^7.24.1",
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
+    "@babel/preset-typescript": "^7.24.1",
     "@eslint/eslintrc": "^3.0.2",
     "@eslint/js": "^9.0.0",
     "babel-core": "^6.26.3",
@@ -51,6 +52,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "jest-environment-jsdom": "^29.7.0",
     "lodash": "^4.17.21"
   }
 }
